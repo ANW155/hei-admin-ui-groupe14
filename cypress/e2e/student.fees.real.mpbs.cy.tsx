@@ -48,11 +48,10 @@ describe("Mobile payment by student", () => {
       );
       cy.get("button[type='submit']").click();
     });
-  });
-  
-  it("Checks the icon button based on the existence of the mpbs in the fee", () => {
-    cy.visit("/")
     cy.get(`a[href="/students/student1_id/fees"]`).click();
+  });
+
+  it("Checks the icon button based on the existence of the mpbs in the fee", () => {
     cy.contains("td", "fee-payement-health-test").should("exist");
 
     cy.contains("td", "fee-payement-health-test")
@@ -66,8 +65,6 @@ describe("Mobile payment by student", () => {
   });
 
   it("Can do mpbs", () => {
-    cy.visit("/")
-    cy.get(`a[href="/students/student1_id/fees"]`).click();
     cy.contains("td", "fee-payement-health-test")
       .parents("tr")
       .within(() => {
@@ -84,7 +81,6 @@ describe("Mobile payment by student", () => {
   });
 
   after("Delete fee after the test", function (this: Mocha.Context) {
-    cy.wait(500)
     cy.visit("/login");
     cy.getByTestid("casdoor-login-btn").click();
     cy.origin(Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"), () => {
@@ -110,8 +106,6 @@ describe("Mobile payment by student", () => {
     cy.get("div[aria-labelledby=alert-dialog-title]").within(() => {
       cy.get("button").eq(1).click();
     });
-
-    cy.getByTestid("LogoutIcon").click();
 
     // instatus local test
     // cy.wait(1000);
