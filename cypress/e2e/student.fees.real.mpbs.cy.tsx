@@ -39,7 +39,7 @@ describe("Mobile payment by student", () => {
     cy.wait(500);
     cy.visit("/login");
     cy.getByTestid("casdoor-login-btn").click();
-    cy.wait(3000)
+    cy.location("origin", { timeout: 10_000 }).should("eq", Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"))
     cy.origin(Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"), () => {
       cy.get(
         "input[placeholder='identifiant, adresse e-mail ou téléphone']"
@@ -84,7 +84,7 @@ describe("Mobile payment by student", () => {
   after("Delete fee after the test", function (this: Mocha.Context) {
     cy.visit("/login");
     cy.getByTestid("casdoor-login-btn").click();
-    cy.wait(3000)
+    cy.location("origin", { timeout: 10_000 }).should("eq", Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"))
     cy.origin(Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"), () => {
       cy.get(
         "input[placeholder='identifiant, adresse e-mail ou téléphone']"
