@@ -6,7 +6,6 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    experimentalSessionAndOrigin: true,
     supportFile: "cypress/support/e2e.ts",
     baseUrl: process.env.REACT_PREPROD_URL
   },

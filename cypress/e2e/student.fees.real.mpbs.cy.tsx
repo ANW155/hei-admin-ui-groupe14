@@ -1,6 +1,5 @@
 describe("Mobile payment by student", () => {
   before("Create the test fee", () => {
-
     cy.visit("/login");
     cy.getByTestid("casdoor-login-btn").click();
     cy.wait(5000);
