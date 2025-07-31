@@ -96,7 +96,7 @@ describe("Mobile payment by student", () => {
     cy.getByTestid("main-search-filter").type("ryan");
     cy.contains("td", "STD21001").click();
     cy.getByTestid("fees-tab").click();
-    cy.contains("td", "MP111111.2222.333339")
+    cy.contains("td", "fee-payement-health-test") // MP111111.2222.333339
       .parents("tr")
       .within(() => {
         cy.get("button").eq(0).click();
