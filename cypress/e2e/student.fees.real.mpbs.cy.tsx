@@ -52,7 +52,7 @@ describe("Mobile payment by student", () => {
   it("Checks the icon button based on the existence of the mpbs in the fee", () => {
     cy.contains("td", "fee-payement-health-test").should("exist");
 
-    cy.contains("td", "fee-payement-health-test")
+    cy.contains("td", "fee-payement-health-test-grp14")
       .parents("tr")
       .within(() => {
         cy.get("button").eq(0).should("exist");
@@ -63,7 +63,7 @@ describe("Mobile payment by student", () => {
   });
 
   it("Can do mpbs", () => {
-    cy.contains("td", "fee-payement-health-test")
+    cy.contains("td", "fee-payement-health-test-grp14")
       .parents("tr")
       .within(() => {
         cy.get("button").eq(0).click();
@@ -96,7 +96,7 @@ describe("Mobile payment by student", () => {
     cy.getByTestid("main-search-filter").type("ryan");
     cy.contains("td", "STD21001").click();
     cy.getByTestid("fees-tab").click();
-    cy.contains("td", "fee-payement-health-test") // MP111111.2222.333339
+    cy.contains("td", "fee-payement-health-test-grp14") // MP111111.2222.333339
       .parents("tr")
       .within(() => {
         cy.get("button").eq(0).click();
