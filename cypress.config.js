@@ -1,6 +1,6 @@
 import { defineConfig } from "cypress";
-import "./global";    
-import "./commands";
+import "./global.ts";    
+import "./commands.ts";
 
 export default defineConfig({
   e2e: {
