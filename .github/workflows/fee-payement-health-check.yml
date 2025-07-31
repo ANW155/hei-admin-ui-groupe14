@@ -33,7 +33,6 @@ jobs:
         with:
           spec: cypress/e2e/student.fees.real.mpbs.cy.tsx
           browser: firefox
-          timeout: 5
 
       - name: Update Instatus page when failure
         if: ${{ failure() }}
