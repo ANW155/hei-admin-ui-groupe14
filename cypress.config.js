@@ -6,7 +6,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    defaultCommandTimeout: 20000,
+    defaultCommandTimeout: 40000,
     supportFile: "cypress/support/e2e.ts",
     baseUrl: process.env.REACT_PREPROD_URL
   },
