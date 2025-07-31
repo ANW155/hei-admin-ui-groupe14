@@ -1,7 +1,7 @@
 describe("Mobile payment by student", () => {
   before("Create the test fee", () => {
 
-    cy.visit("/");
+    cy.visit("/login");
     cy.getByTestid("casdoor-login-btn").click();
     cy.origin(Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"), () => {
       cy.get(
@@ -37,7 +37,7 @@ describe("Mobile payment by student", () => {
 
   beforeEach("Connect with student role", () => {
     cy.wait(500);
-    cy.visit("/");
+    cy.visit("/login");
     cy.getByTestid("casdoor-login-btn").click();
     cy.origin(Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"), () => {
       cy.get(
@@ -60,6 +60,8 @@ describe("Mobile payment by student", () => {
         cy.get("button").eq(0).should("exist");
         cy.get("button").eq(1).should("exist");
       });
+
+    cy.getByTestid("LogoutIcon").click();
   });
 
   it("Can do mpbs", () => {
@@ -79,7 +81,7 @@ describe("Mobile payment by student", () => {
   });
 
   after("Delete fee after the test", function (this: Mocha.Context) {
-    cy.visit("/");
+    cy.visit("/login");
     cy.getByTestid("casdoor-login-btn").click();
     cy.origin(Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"), () => {
       cy.get(
@@ -104,6 +106,8 @@ describe("Mobile payment by student", () => {
     cy.get("div[aria-labelledby=alert-dialog-title]").within(() => {
       cy.get("button").eq(1).click();
     });
+
+    cy.getByTestid("LogoutIcon").click();
 
     // instatus local test
     // cy.wait(1000);
