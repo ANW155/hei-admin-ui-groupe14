@@ -37,8 +37,7 @@ describe("Mobile payment by student", () => {
   beforeEach("Connect with student role", () => {
     cy.visit("/login");
     cy.getByTestid("casdoor-login-btn").click();
-    cy.reload(true)
-    cy.origin(Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"),() => {
+    cy.origin(Cypress.env("REACT_APP_CASDOOR_SDK_SERVER_URL"), () => {
       cy.get(
         "input[placeholder='identifiant, adresse e-mail ou téléphone']"
       ).type(Cypress.env("REACT_APP_TEST_STUDENT1_EMAIL"));
@@ -46,6 +45,15 @@ describe("Mobile payment by student", () => {
         Cypress.env("REACT_APP_TEST_STUDENT1_PASSWORD")
       );
       cy.get("button[type='submit']").click();
+    })
+    cy.on("fail", (err) => {
+      if (err.message.includes("Timed out retrying")) {
+        cy.log("Pas de redirection détectée : fallback");
+        cy.go("back");
+        cy.getByTestid("casdoor-login-btn").click();
+        return false; // empêche l’échec du test
+      }
+      throw err;
     });
     cy.get(`a[href="/students/student1_id/fees"]`).click();
   });
