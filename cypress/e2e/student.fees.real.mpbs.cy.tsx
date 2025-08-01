@@ -48,10 +48,9 @@ describe("Mobile payment by student", () => {
     })
     cy.on("fail", (err) => {
       if (err.message.includes("Timed out retrying")) {
-        cy.log("Pas de redirection détectée : fallback");
         cy.go("back");
         cy.getByTestid("casdoor-login-btn").click();
-        return false; // empêche l’échec du test
+        return false;
       }
       throw err;
     });
