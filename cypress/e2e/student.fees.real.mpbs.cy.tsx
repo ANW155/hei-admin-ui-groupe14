@@ -11,6 +11,14 @@ describe("Mobile payment by student", () => {
       );
       cy.get("button[type='submit']").click();
     });
+    cy.on("fail", (err) => {
+      if (err.message.includes("Timed out retrying")) {
+        cy.go("back");
+        cy.getByTestid("casdoor-login-btn").click();
+        return false;
+      }
+      throw err;
+    });
 
     cy.getByTestid("SchoolIcon").click();
     cy.getByTestid("PeopleIcon").click();
@@ -98,17 +106,28 @@ describe("Mobile payment by student", () => {
       );
       cy.get("button[type='submit']").click();
     });
+    cy.on("fail", (err) => {
+      if (err.message.includes("Timed out retrying")) {
+        cy.go("back");
+        cy.getByTestid("casdoor-login-btn").click();
+        return false;
+      }
+      throw err;
+    });
 
     cy.getByTestid("SchoolIcon").click();
     cy.getByTestid("PeopleIcon").click();
     cy.getByTestid("main-search-filter").type("ryan");
     cy.contains("td", "STD21001").click();
     cy.getByTestid("fees-tab").click();
-    cy.contains("td", "fee-payement-health-test-grp14") // MP111111.2222.333339
-      .parents("tr")
-      .within(() => {
-        cy.get("button").eq(0).click();
-      });
+    cy.get(':contains("fee-payement-health-test-grp14")')
+      .each(() => {
+        cy.contains("td", "fee-payement-health-test-grp14") // MP111111.2222.333339
+          .parents("tr")
+          .within(() => {
+            cy.get("button").eq(0).click();
+          });
+      })
     cy.get("div[aria-labelledby=alert-dialog-title]").within(() => {
       cy.get("button").eq(1).click();
     });
