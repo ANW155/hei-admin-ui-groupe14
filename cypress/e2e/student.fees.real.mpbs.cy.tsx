@@ -121,8 +121,8 @@ describe("Mobile payment by student", () => {
     cy.contains("td", "STD21001").click();
     cy.getByTestid("fees-tab").click();
     cy.get(':contains("fee-payement-health-test-grp14")')
-      .each(() => {
-        cy.contains("td", "fee-payement-health-test-grp14") // MP111111.2222.333339
+      .each(($el) => {
+        cy.wrap($el) // MP111111.2222.333339
           .parents("tr")
           .within(() => {
             cy.get("button").eq(0).click();
